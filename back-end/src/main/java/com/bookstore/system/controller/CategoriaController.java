@@ -18,18 +18,18 @@ public class CategoriaController {
     @Autowired
     private CategoraiService categoraiService;
 
+    @PostMapping
+    public ResponseEntity<Categoria> save(@RequestBody Categoria categoria){
+         categoria = categoraiService.save(categoria);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoria);
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<Categoria> findId(@PathVariable  Long id){
         Categoria categoria = categoraiService.findId(id);
 
         return ResponseEntity.ok(categoria);
-    }
-
-    @PostMapping
-    public ResponseEntity<Categoria> save(@RequestBody Categoria categoria){
-        Categoria categoriaSalva = categoraiService.save(categoria);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
     }
 
     @GetMapping
@@ -41,6 +41,20 @@ public class CategoriaController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok().body(listDTO);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<CategoriaDTO> update(@PathVariable Long id, @RequestBody  CategoriaDTO categoriaDTO){
+        Categoria newCategoria = categoraiService.update(id, categoriaDTO);
+
+        return ResponseEntity.ok().body(new CategoriaDTO(newCategoria));
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete (@PathVariable Long id){
+        categoraiService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }
