@@ -1,5 +1,6 @@
 package com.bookstore.system.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Livro implements Serializable {
     private String nomeAutor;
     private String texto;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;

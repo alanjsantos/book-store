@@ -2,6 +2,7 @@ package com.bookstore.system.service;
 
 import com.bookstore.system.model.entity.Categoria;
 import com.bookstore.system.repository.CategoriaResposiroty;
+import com.bookstore.system.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,7 @@ public class CategoraiService {
     public  Categoria findId(Long id){
         Optional<Categoria> catogoria = categoriaResposiroty.findById(id);
 
-        return catogoria.orElse(null);
+        return catogoria.orElseThrow(() -> new ObjectNotFoundException("ID " + id + " não encontrado!"));
     }
 
     @Transactional

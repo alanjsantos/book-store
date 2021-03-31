@@ -22,9 +22,10 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> save(Categoria categoria){
+    public ResponseEntity<Categoria> save(@RequestBody Categoria categoria){
         Categoria categoriaSalva = categoraiService.save(categoria);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
     }
+
 }
