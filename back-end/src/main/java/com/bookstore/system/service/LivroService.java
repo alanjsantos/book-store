@@ -56,13 +56,7 @@ public class LivroService {
 
     @Transactional
     public void delete(Long id){
-        findId(id);
-        livroRepository.deleteById(id);
-        try {
-            livroRepository.deleteById(id);
-        }catch (DataIntegrityViolationException e){
-            throw new DataIntegrityViolationException("Livro não pode ser deletado. Possui Livros associados!");
-        }
-        livroRepository.deleteById(id);
+       findId(id);
+      livroRepository.deleteById(id);
     }
 }

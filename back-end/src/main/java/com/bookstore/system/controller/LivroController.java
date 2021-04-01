@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,7 @@ public class LivroController {
 
     @PostMapping
     public ResponseEntity<Livro> save(@RequestParam(value = "categoria", defaultValue = "0") Long id,
-                                      @RequestBody Livro livro){
+                                      @Valid @RequestBody Livro livro){
         Livro newlivro = livroService.save(livro, id);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(newlivro);
@@ -48,7 +49,7 @@ public class LivroController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<LivroDTO> update(@PathVariable Long id, @RequestBody  LivroDTO livroDTO){
+    public ResponseEntity<LivroDTO> update(@Valid @PathVariable Long id, @RequestBody  LivroDTO livroDTO){
         Livro newLivro = livroService.update(id, livroDTO);
 
         return ResponseEntity.ok().body(new LivroDTO(newLivro));
