@@ -3,9 +3,10 @@ package com.bookstore.system.service;
 import com.bookstore.system.model.dto.CategoriaDTO;
 import com.bookstore.system.model.entity.Categoria;
 import com.bookstore.system.repository.CategoriaResposiroty;
-import com.bookstore.system.service.exception.DataIntegrityViolationException;
 import com.bookstore.system.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,10 +53,9 @@ public class CategoraiService {
 
         try {
             categoriaResposiroty.deleteById(id);
-        }catch (DataIntegrityViolationException e){
-            throw new DataIntegrityViolationException("Categoria não pode ser deletado. Possui Livros associados!");
+        }catch ( DataIntegrityViolationException e){
+            throw new com.bookstore.system.service.exception.DataIntegrityViolationException("Categoria não pode ser deletado. Possui Livros associados!");
         }
-        categoriaResposiroty.deleteById(id);
     }
 
 }

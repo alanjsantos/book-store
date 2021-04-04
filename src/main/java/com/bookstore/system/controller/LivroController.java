@@ -40,7 +40,7 @@ public class LivroController {
     @GetMapping
     public ResponseEntity<List<LivroDTO>> findAll(@RequestParam(value = "categoria", defaultValue = "0") Long id_cat){
         List<Livro> list = livroService.findAll(id_cat);
-        //convetendo uma lista para DTO
+        //convertendo uma lista para DTO
         List<LivroDTO> listDTO = list.stream()
                 .map(obj -> new LivroDTO(obj))
                 .collect(Collectors.toList());
