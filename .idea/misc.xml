@@ -4,8 +4,11 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/../dsdeliver-sds/backend/pom.xml" />
         <option value="$PROJECT_DIR$/../microservices/hr-worker/pom.xml" />
+        <option value="$PROJECT_DIR$/../microservices/hr-payroll/pom.xml" />
+        <option value="$PROJECT_DIR$/../microservices/hr-eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/../microservices/hr-api-gateway-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/../microservices/hr-config-server/pom.xml" />
       </list>
     </option>
   </component>
